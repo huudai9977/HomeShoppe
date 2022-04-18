@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Home_Shoppe.Models.Product>
+
+<div class="section group">
+    @foreach (var item in Model)
+    {
+
+        <div class="grid_1_of_4 images_1_of_4">
+            <a href="@Url.Action("Details", "Shop", new { id = item.IdProduct })"><img src="~/Asset/images/@item.Image1" alt="" style="width:212px;height:212px;" /></a>
+            <h2>@item.NameProduct </h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p><span class="rupees">@item.Price $</span></p>
+                </div>
+                <div class="add-cart">
+                    <h4><a href="@Url.Action("Details", "Shop", new { id = item.IdProduct })">Add to Cart</a></h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+    }
+</div>

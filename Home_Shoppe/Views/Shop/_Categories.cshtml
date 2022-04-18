@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Home_Shoppe.Models.Category>
+    <div class="categories">
+        <ul>
+            <h3>Categories</h3>
+            @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("Category", "Shop", new { id = item.IdCategory })">@item.NameCategory</a></li>
+            }
+        </ul>
+    </div>

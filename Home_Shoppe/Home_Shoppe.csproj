@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,6 +139,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204140448222_first-init.cs" />
+    <Compile Include="Migrations\202204140448222_first-init.Designer.cs">
+      <DependentUpon>202204140448222_first-init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204140523254_deleteCompany.cs" />
+    <Compile Include="Migrations\202204140523254_deleteCompany.designer.cs">
+      <DependentUpon>202204140523254_deleteCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204140528328_deleteStatusCate.cs" />
+    <Compile Include="Migrations\202204140528328_deleteStatusCate.designer.cs">
+      <DependentUpon>202204140528328_deleteStatusCate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204140613348_editProduct.cs" />
+    <Compile Include="Migrations\202204140613348_editProduct.designer.cs">
+      <DependentUpon>202204140613348_editProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\HomeShopDbContext.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductReview.cs" />
+    <Compile Include="Models\ProductTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +185,7 @@
     <Content Include="Asset\images\feature-pic2.jpg" />
     <Content Include="Asset\images\feature-pic3.jpg" />
     <Content Include="Asset\images\feature-pic4.jpg" />
+    <Content Include="Asset\images\ip.jpg" />
     <Content Include="Asset\images\linkedin.png" />
     <Content Include="Asset\images\list-img.png" />
     <Content Include="Asset\images\logo.png" />
@@ -166,6 +205,7 @@
     <Content Include="Asset\images\productslide-5.jpg" />
     <Content Include="Asset\images\productslide-6.jpg" />
     <Content Include="Asset\images\quality-rating.png" />
+    <Content Include="Asset\images\samsung.jpg" />
     <Content Include="Asset\images\search.png" />
     <Content Include="Asset\images\skype.png" />
     <Content Include="Asset\images\slide-1-image.png" />
@@ -180,6 +220,7 @@
     <Content Include="Asset\images\thumbnailslide-6.jpg" />
     <Content Include="Asset\images\twitter.png" />
     <Content Include="Asset\images\value-rating.png" />
+    <Content Include="Asset\images\vin.jpg" />
     <Content Include="Asset\images\wishlist.png" />
     <Content Include="Asset\js\easing.js" />
     <Content Include="Asset\js\easyResponsiveTabs.js" />
@@ -194,6 +235,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -230,10 +272,13 @@
     <Content Include="Views\Shop\Delivery.cshtml" />
     <Content Include="Views\Shop\Contact.cshtml" />
     <Content Include="Views\Shop\News.cshtml" />
+    <Content Include="Views\Shop\AllProduct.cshtml" />
+    <Content Include="Views\Shop\_Categories.cshtml" />
+    <Content Include="Views\Shop\Category.cshtml" />
+    <Content Include="Views\Shop\_Top4Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -247,6 +292,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204140448222_first-init.resx">
+      <DependentUpon>202204140448222_first-init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204140523254_deleteCompany.resx">
+      <DependentUpon>202204140523254_deleteCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204140528328_deleteStatusCate.resx">
+      <DependentUpon>202204140528328_deleteStatusCate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204140613348_editProduct.resx">
+      <DependentUpon>202204140613348_editProduct.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -281,7 +340,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
