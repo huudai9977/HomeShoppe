@@ -1,10 +1,10 @@
 git clone
 git status
 git init
-git config user.name "someone"
-git config user.email "someone@someplace.com"
+git config user.name "huudai9977"
+git config user.email "huudai9977@gmail.com"
 git add *
-git commit -m "some init msg"
+git commit -m ""
 git push
 git log
 git pull

@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<Home_Shoppe.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>List Product</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            IdProduct
+        </th>
+        <th>
+            Name Product
+        </th>
+        <th>
+            Name Category
+        </th>
+
+        <th>
+           Price
+        </th>
+
+        <th>
+            Status
+        </th>
+        <th>
+            Views
+        </th>
+        <th>
+            Sold
+        </th>
+        <th>
+            Image
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.IdProduct
+            </td>
+            <td>
+                @item.NameProduct
+            </td>
+            <td>
+                @item.Category.NameCategory
+            </td>
+
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                @item.Views
+            </td>
+            <td>
+                @item.Sold
+            </td>
+            <td>
+                <img src="~/Asset/data/@item.Image1" alt="" style="width:40px;height:40px;" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdProduct }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdProduct }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdProduct })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="content-pagenation">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+</div>

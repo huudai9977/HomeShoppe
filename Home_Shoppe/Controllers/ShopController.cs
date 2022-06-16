@@ -33,6 +33,14 @@ namespace Home_Shoppe.Controllers
             var c = dba.Products.SqlQuery("Select TOP(4) * from Product ORDER BY IdProduct DESC");
             return c;
         }
+
+        public static IEnumerable<Product> RelatedProduct(string id)
+        {
+            var dba = new HomeShopDbContext();
+            var c = dba.Products.SqlQuery("Select TOP(4) * from Product where IdCategory='" + id + "'"+" ORDER BY Views DESC");
+            return c;
+        }
+
         public static IEnumerable<Product> FeatureProduct()
         {
             var dba = new HomeShopDbContext();
@@ -49,14 +57,16 @@ namespace Home_Shoppe.Controllers
         public ActionResult Category(string id,int page = 1, int pagesize = 12)
         {
             var p = db.Products.SqlQuery("Select * from Product where IdCategory='"+id+"'").ToPagedList(page, pagesize);
+            ViewBag.NameCategory = db.Categories.SingleOrDefault(a => a.IdCategory == id).NameCategory;
             return View(p);
         }
 
         // GET: Shop/Details/5
         public ActionResult Details(string id)
         {
-
+            
             var view = db.Products.SingleOrDefault(a => a.IdProduct == id );
+            
             return View(view);
         }
 
@@ -84,53 +94,6 @@ namespace Home_Shoppe.Controllers
             return View();
         }
 
-        // GET: Shop/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-        // GET: Shop/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Shop/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Shop/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Shop/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

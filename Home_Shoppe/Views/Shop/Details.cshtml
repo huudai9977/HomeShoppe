@@ -8,7 +8,7 @@
     <div class="content">
         <div class="content_top">
             <div class="back-links">
-                <p><a href="index.html">Home</a> >>>> <a href="#">Electronics</a></p>
+                <p><a href="@Url.Action("Index", "Shop")">Home</a> >>>> <a href="@Url.Action("Category", "Shop", new { id = Model.Category.IdCategory })">@Model.Category.NameCategory</a></p>
             </div>
             <div class="clear"></div>
         </div>
@@ -20,20 +20,20 @@
                             <div id="products_example">
                                 <div id="products">
                                     <div class="slides_container">
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image1" alt=" " style="width:366px;height:275px;"/></a>
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image2" alt=" " style="width:366px;height:275px;"/></a>
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image3" alt=" " style="width:366px;height:275px;"/></a>
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image4" alt=" " style="width:366px;height:275px;"/></a>
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image5" alt=" " style="width:366px;height:275px;"/></a>
-                                        <a href="#" target="_blank"><img src="~/Asset/images/@Model.Image6" alt=" " style="width:366px;height:275px;"/></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image1" alt=" " style="width:366px;height:275px;" /></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image2" alt=" " style="width:366px;height:275px;" /></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image3" alt=" " style="width:366px;height:275px;" /></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image4" alt=" " style="width:366px;height:275px;" /></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image5" alt=" " style="width:366px;height:275px;" /></a>
+                                        <a href="#" target="_blank"><img src="~/Asset/data/@Model.Image6" alt=" " style="width:366px;height:275px;" /></a>
                                     </div>
                                     <ul class="pagination">
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image1" alt=" " /></a></li>
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image2" alt=" " /></a></li>
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image3" alt=" " /></a></li>
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image4" alt=" " /></a></li>
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image5" alt=" " /></a></li>
-                                        <li><a href="#"><img src="~/Asset/images/@Model.Image6" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/@Model.Image2" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/@Model.Image3" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/@Model.Image4" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/@Model.Image5" alt=" " /></a></li>
+                                        <li><a href="#"><img src="~/Asset/data/@Model.Image6" alt=" " /></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                         <div class="resp-tabs-container">
                             <div class="product-desc">
                                 <p>@Model.ProductDetails</p>
-                                
+
                             </div>
 
                             <div class="product-tags">
@@ -167,64 +167,16 @@
                         <h3>Related Products</h3>
                     </div>
                     <div class="see">
-                        <p><a href="#">See all Products</a></p>
+                        <p><a href="@Url.Action("Category", "Shop", new { id = Model.Category.IdCategory  })">See all Products</a></p>
                     </div>
                     <div class="clear"></div>
                 </div>
-                <div class="section group">
-                    <div class="grid_1_of_4 images_1_of_4">
-                        <a href="#"><img src="~/Asset/images/new-pic1.jpg" alt=""></a>
-                        <div class="price" style="border:none">
-                            <div class="add-cart" style="float:none">
-                                <h4><a href="#">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="grid_1_of_4 images_1_of_4">
-                        <a href="#"><img src="~/Asset/images/new-pic2.jpg" alt=""></a>
-                        <div class="price" style="border:none">
-                            <div class="add-cart" style="float:none">
-                                <h4><a href="#">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="grid_1_of_4 images_1_of_4">
-                        <a href="#"><img src="~/Asset/images/new-pic4.jpg" alt=""></a>
-                        <div class="price" style="border:none">
-                            <div class="add-cart" style="float:none">
-                                <h4><a href="#">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="grid_1_of_4 images_1_of_4">
-                        <img src="~/Asset/images/new-pic3.jpg" alt="">
-                        <div class="price" style="border:none">
-                            <div class="add-cart" style="float:none">
-                                <h4><a href="#">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_Top4Product", Home_Shoppe.Controllers.ShopController.RelatedProduct(Model.Category.IdCategory))
             </div>
             <div class="rightsidebar span_3_of_1">
                 <h2>CATEGORIES</h2>
                 <ul class="side-w3ls">
-                    <li><a href="#">Mobile Phones</a></li>
-                    <li><a href="#">Desktop</a></li>
-                    <li><a href="#">Laptop</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Software</a></li>
-                    <li><a href="#">Sports &amp; Fitness</a></li>
-                    <li><a href="#">Footwear</a></li>
-                    <li><a href="#">Jewellery</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Home Decor &amp; Kitchen</a></li>
-                    <li><a href="#">Beauty &amp; Healthcare</a></li>
-                    <li><a href="#">Toys, Kids &amp; Babies</a></li>
+                    @Html.Partial("_Categories", Home_Shoppe.Controllers.ShopController.ListCategories())
                 </ul>
                 <div class="subscribe">
                     <h2>Newsletters Signup</h2>
