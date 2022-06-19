@@ -7,12 +7,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Home_Shoppe.Models;
+using System.Data.Entity;
+using System.Net;
 
 namespace Home_Shoppe.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        public HomeShopDbContext db = new HomeShopDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -63,18 +66,77 @@ namespace Home_Shoppe.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+            var Email = User.Identity.GetUserName();
+            ViewBag.Email = Email;
+            var view = db.UserInformations.Where(c => c.Email == Email).FirstOrDefault();
+            if (view==null)
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+                ViewBag.check = 0;
+            }
+            else
+            {
+                ViewBag.check = 1;
+            }
+            return View(view);
         }
 
+        public ActionResult AddInformation()
+        {
+            return View();
+        }
+
+        // POST: Manage/AddInformation
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddInformation([Bind(Include = "IdUser,Email,NameUser,Phone,Address")] UserInformation userInformation)
+        {
+            if (ModelState.IsValid)
+            {
+
+                long count = db.UserInformations.LongCount();
+                string id = "U" + count.ToString("00000");
+                userInformation.IdUser = id;
+                var Email = User.Identity.GetUserName();
+                userInformation.Email = Email;
+                db.UserInformations.Add(userInformation);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(userInformation);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UserInformation userInformation = db.UserInformations.Find(id);
+            if (userInformation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userInformation);
+        }
+
+        // POST: manage/EditUserInfromation/
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUserInfromation([Bind(Include = "IdUser,Email,NameUser,Phone,Address")] UserInformation userInformation)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(userInformation).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(userInformation);
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

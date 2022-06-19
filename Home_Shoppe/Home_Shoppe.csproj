@@ -176,7 +176,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserInformationsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -200,9 +202,25 @@
     <Compile Include="Migrations\202204140613348_editProduct.Designer.cs">
       <DependentUpon>202204140613348_editProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206112209508_AddAccount.cs" />
-    <Compile Include="Migrations\202206112209508_AddAccount.designer.cs">
-      <DependentUpon>202206112209508_AddAccount.cs</DependentUpon>
+    <Compile Include="Migrations\202206162104390_add-users.cs" />
+    <Compile Include="Migrations\202206162104390_add-users.Designer.cs">
+      <DependentUpon>202206162104390_add-users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206162129290_change_name.cs" />
+    <Compile Include="Migrations\202206162129290_change_name.designer.cs">
+      <DependentUpon>202206162129290_change_name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206171531192_ab.cs" />
+    <Compile Include="Migrations\202206171531192_ab.designer.cs">
+      <DependentUpon>202206171531192_ab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206180510042_update-userInformation.cs" />
+    <Compile Include="Migrations\202206180510042_update-userInformation.designer.cs">
+      <DependentUpon>202206180510042_update-userInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206181948408_check1.cs" />
+    <Compile Include="Migrations\202206181948408_check1.Designer.cs">
+      <DependentUpon>202206181948408_check1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -210,6 +228,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\HomeShopDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductReview.cs" />
@@ -1345,6 +1364,10 @@
     <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserInformations\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserInformations\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserInformations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\SetRole.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1403,6 +1426,8 @@
     <Content Include="Views\Shop\News.cshtml" />
     <Content Include="Views\Shop\_Categories.cshtml" />
     <Content Include="Views\Shop\_Top4Product.cshtml" />
+    <Content Include="Views\Manage\AddInformation.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1441,8 +1466,20 @@
     <EmbeddedResource Include="Migrations\202204140613348_editProduct.resx">
       <DependentUpon>202204140613348_editProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206112209508_AddAccount.resx">
-      <DependentUpon>202206112209508_AddAccount.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206162104390_add-users.resx">
+      <DependentUpon>202206162104390_add-users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206162129290_change_name.resx">
+      <DependentUpon>202206162129290_change_name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206171531192_ab.resx">
+      <DependentUpon>202206171531192_ab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206180510042_update-userInformation.resx">
+      <DependentUpon>202206180510042_update-userInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206181948408_check1.resx">
+      <DependentUpon>202206181948408_check1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

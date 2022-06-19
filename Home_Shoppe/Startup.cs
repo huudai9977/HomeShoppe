@@ -46,7 +46,7 @@ namespace Home_Shoppe
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
-
+                    
                 }
             }
 
@@ -56,7 +56,7 @@ namespace Home_Shoppe
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Manager";
                 roleManager.Create(role);
-
+                
             }
 
             // creating Creating Employee role     

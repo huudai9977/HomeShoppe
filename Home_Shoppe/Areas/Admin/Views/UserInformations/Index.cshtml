@@ -1,0 +1,62 @@
+﻿
+@model PagedList.IPagedList<Home_Shoppe.Models.UserInformation>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Id User
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Name User
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Address
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Role", "SetRole/" + item.IdUser, "Roles") |
+            @Html.ActionLink("Details", "Details", new { id = item.IdUser }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdUser })
+        </td>
+    </tr>
+    }
+
+</table>
+<div class="content-pagenation">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+</div>

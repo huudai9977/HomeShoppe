@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Home_Shoppe.Models.Category>
-
+﻿
+@model PagedList.IPagedList<Home_Shoppe.Models.Category>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
@@ -13,22 +14,27 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NameCategory)
+            Name Category
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameCategory)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCategory }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCategory }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCategory })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCategory)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdCategory }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdCategory }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdCategory })
+            </td>
+        </tr>
+    }
 
 </table>
+<div class="content-pagenation">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+</div>

@@ -14,8 +14,9 @@ namespace Home_Shoppe.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
-        private HomeShopDbContext db = new HomeShopDbContext();
 
+        private HomeShopDbContext db = new HomeShopDbContext();
+        [Authorize(Roles = "Admin,Maganer,Employee")]
         // GET: Admin/Products
         public ActionResult Index(int page = 1, int pagesize = 12)
         {

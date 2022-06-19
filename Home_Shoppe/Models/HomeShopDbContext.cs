@@ -14,14 +14,14 @@ namespace Home_Shoppe.Models
         {
             
         }
-
+        public virtual DbSet<UserInformation> UserInformations { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductTag> ProductTags { get; set; }
-
-        
+        public IEnumerable<object> AspNetUserRole { get; internal set; }
+        public object AspNetUsers { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder contextBuilder)
         {
@@ -40,6 +40,11 @@ namespace Home_Shoppe.Models
                  (x => x.Category).WillCascadeOnDelete();
             
 
+        }
+
+        internal dynamic Query<T>(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

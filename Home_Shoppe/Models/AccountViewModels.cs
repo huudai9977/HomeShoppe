@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Home_Shoppe.Models
 {
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

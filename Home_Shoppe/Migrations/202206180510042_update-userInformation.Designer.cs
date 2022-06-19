@@ -7,13 +7,13 @@ namespace Home_Shoppe.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddAccount : IMigrationMetadata
+    public sealed partial class updateuserInformation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAccount));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateuserInformation));
         
         string IMigrationMetadata.Id
         {
-            get { return "202206112209508_AddAccount"; }
+            get { return "202206180510042_update-userInformation"; }
         }
         
         string IMigrationMetadata.Source

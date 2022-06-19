@@ -1,0 +1,44 @@
+﻿@model Home_Shoppe.Models.UserInformation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameUser)
+        </dd>
+
+        <dt>
+            Decentralization
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

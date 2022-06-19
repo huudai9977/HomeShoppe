@@ -11,116 +11,110 @@ using PagedList;
 
 namespace Home_Shoppe.Areas.Admin.Controllers
 {
-    public class CategoriesController : Controller
+    public class UserInformationsController : Controller
     {
-        
-
         private HomeShopDbContext db = new HomeShopDbContext();
 
-        [Authorize(Roles = "Admin,Maganer,Employee")]
+        [Authorize(Roles = "Admin,Maganer")]
 
-        // GET: Admin/Categories
+        // GET: Admin/UserInformations
         public ActionResult Index(int page = 1, int pagesize = 12)
         {
-            var p = db.Categories.SqlQuery("Select * from Category ").ToPagedList(page, pagesize);
-            return View(db.Categories.ToList());
+            var p = db.UserInformations.SqlQuery("Select * from UserInformations ").ToPagedList(page, pagesize);
+            return View(p);
         }
 
-        // GET: Admin/Categories/Details/5
+        // GET: Admin/UserInformations/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            UserInformation userInformation = db.UserInformations.Find(id);
+            if (userInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(userInformation);
         }
-
-        // GET: Admin/Categories/Create
+        /*
+        // GET: Admin/UserInformations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Categories/Create
+        // POST: Admin/UserInformations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCategory,NameCategory")] Category category)
+        public ActionResult Create([Bind(Include = "IdUser,Email,NameUser,Phone,Address")] UserInformation userInformation)
         {
-            long count = db.Categories.LongCount();
-            string id = "C" + count.ToString("00000");
-            category.IdCategory = id;
             if (ModelState.IsValid)
             {
-
-                db.Categories.Add(category);
+                db.UserInformation.Add(userInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(userInformation);
         }
 
-        // GET: Admin/Categories/Edit/5
+        // GET: Admin/UserInformations/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            UserInformation userInformation = db.UserInformation.Find(id);
+            if (userInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(userInformation);
         }
 
-        // POST: Admin/Categories/Edit/5
+        // POST: Admin/UserInformations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCategory,NameCategory")] Category category)
+        public ActionResult Edit([Bind(Include = "IdUser,Email,NameUser,Phone,Address")] UserInformation userInformation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(userInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(userInformation);
         }
-
-        // GET: Admin/Categories/Delete/5
+        */
+        // GET: Admin/UserInformations/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            UserInformation userInformation = db.UserInformations.Find(id);
+            if (userInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(userInformation);
         }
 
-        // POST: Admin/Categories/Delete/5
+        // POST: Admin/UserInformations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            UserInformation userInformation = db.UserInformations.Find(id);
+            db.UserInformations.Remove(userInformation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

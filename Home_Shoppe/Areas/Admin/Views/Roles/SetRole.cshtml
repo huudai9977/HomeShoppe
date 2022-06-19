@@ -1,0 +1,67 @@
+﻿@model Home_Shoppe.Models.UserInformation
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>Decentralization</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>User Information</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.IdUser)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdUser)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NameUser)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameUser)
+            </dd>
+
+            <dt>
+                Role
+            </dt>
+
+            <dd>
+                @ViewBag.role
+            </dd>
+
+        </dl>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="submitButton" value="Admin" class="btn btn-default"/>
+            <input type="submit" name="submitButton" value="Manager" class="btn btn-default"/>
+            <input type="submit" name="submitButton" value="Employee" class="btn btn-default" />
+            <input type="submit" name="submitButton" value="Delete"  class="btn btn-default"/>
+        </div>
+    </div>
+
+
+
+}
+    <div>
+        @Html.ActionLink("Back to List", "Index", "UserInformations")
+    </div>
+
