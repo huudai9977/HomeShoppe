@@ -50,12 +50,7 @@
                 </div>
                 <div class="cart">
                     <p>
-                        Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2">
-                            0 item(s) - $0.00
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul>
-                        </div>
+                        Welcome to our Online Store! <a href="@Url.Action("Index","Carts",null)" class="button">Cart</a>
                     </p>
                 </div>
                 <script type="text/javascript">
@@ -99,13 +94,21 @@
                         <div class="clear"></div>
                     </ul>
                 </div>
-                <div class="search_box">
-                    <form>
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
-                    </form>
+                @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
+                {
+                    <div class="search_box">
+
+                        <form>
+
+                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+
+                        </form>
+                        
+
+                    </div>
+                }
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
         </div>
         @RenderBody()
         <div class="footer">

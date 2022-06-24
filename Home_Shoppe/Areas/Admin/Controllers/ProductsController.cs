@@ -54,8 +54,9 @@ namespace Home_Shoppe.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdProduct,IdCategory,NameProduct,Price,ProductDetails,Description,Status,New,Views,Sold,Image1,Image2,Image3,Image4,Image5,Image6")] Product product,HttpPostedFileBase img)
         {
+            Random r = new Random();
             long count = db.Products.LongCount();
-            string id = "P" + count.ToString("00000");
+            string id = "P" +r.Next(10,99)+ count.ToString("00000");
             product.IdProduct = id;
             product.Status = 0;
             product.Sold = 0;
@@ -113,7 +114,7 @@ namespace Home_Shoppe.Areas.Admin.Controllers
                 }
                 
                 db.Products.Add(product);
-                db.SaveChanges();
+                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

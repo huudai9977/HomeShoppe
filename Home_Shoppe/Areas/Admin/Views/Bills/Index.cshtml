@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Home_Shoppe.Models.Bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<style>
+
+    .header__sort-bar {
+        display: none;
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 32px;
+    }
+
+    th, td {
+        min-width: 50px;
+        padding: 8px;
+    }
+
+    .content-detail {
+        text-decoration: none;
+        color: blue;
+    }
+
+        .content-detail:hover {
+            color: cornflowerblue;
+        }
+
+    .content-btn {
+    }
+</style>
+<br />
+<h2 style="text-align:center">BILL</h2>
+<br />
+<table align="center" border="1">
+    <tr style="text-align:center; font-weight:bold; width: 80%;">
+        <th> Id Bill</th>
+        <th> User</th>
+        <th>Receiver Name</th>
+        <th> Status</th>
+        <th>Total Quantity</th>
+        <th> TotalPayment</th>
+        <th> Time</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr style="text-align:center;font-weight:bold">
+        @using (Html.BeginForm())
+        {
+            <td><a href="@Url.Action("Details", "Shop", new { id = item.IdBill })">@item.IdBill</a></td>
+            <td> @item.UserID </td>
+            <td> @item.ReceiverName </td>
+            <td>
+                <select name="Status" style="color:black">
+                    @if (@item.Status == "Wait for confirmtion")
+                    {
+                        <option value="Wait for confirmtion" selected>Wait for confirmtion</option>
+                        <option value="Preparing">Preparing</option>
+                        <option value="Delivering">Delivering</option>
+                        <option value="Delivered">Delivered</option>
+                    }
+                    @if (@item.Status == "Preparing")
+                    {
+                        <option value="Wait for confirmtion">Wait for confirmtion</option>
+                        <option value="Preparing" selected>Preparing</option>
+                        <option value="Delivering">Delivering</option>
+                        <option value="Delivered">Delivered</option>
+                    }
+                    @if (@item.Status == "Delivering")
+                    {
+                        <option value="Wait for confirmtion">Wait for confirmtion</option>
+                        <option value="Preparing">Preparing</option>
+                        <option value="Delivering" selected>Delivering</option>
+                        <option value="Delivered">Delivered</option>
+                    }
+                    @if (@item.Status == "Delivered")
+                    {
+                        <option value="Wait for confirmtion">Wait for confirmtion</option>
+                        <option value="Preparing">Preparing</option>
+                        <option value="Delivering">Delivering</option>
+                        <option value="Delivered" selected>Delivered</option>
+                    }
+
+                </select>
+                <input type="hidden" name="idbill" value="@item.IdBill" />
+            </td>
+            
+            <td>@item.TotalQuantity</td>
+            <td>@item.TotalPayment</td>
+            <td>@item.Time</td>
+            <td>
+                <a href="@Url.Action("Details", "Bills", new { id = item.IdBill })" class="content-detail"> Details </a>
+            </td>
+            <td> <input type="submit" value="Update" name="btn" style="color:black" /></td>
+            <td> <input type="submit" value="Delete" name="btn" style="color:black" /> </td>
+
+        }
+    </tr>
+
+    }
+</table>

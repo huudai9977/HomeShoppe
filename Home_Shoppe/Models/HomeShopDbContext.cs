@@ -14,10 +14,12 @@ namespace Home_Shoppe.Models
         {
             
         }
+
         public virtual DbSet<UserInformation> UserInformations { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
-        
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductTag> ProductTags { get; set; }
         public IEnumerable<object> AspNetUserRole { get; internal set; }
@@ -25,9 +27,6 @@ namespace Home_Shoppe.Models
 
         protected override void OnModelCreating(DbModelBuilder contextBuilder)
         {
-
-          
-
 
             contextBuilder.Entity<Product>().HasMany
                  (x => x.ProductReviews).WithOptional
@@ -38,7 +37,11 @@ namespace Home_Shoppe.Models
             contextBuilder.Entity<Category>().HasMany
                  (x => x.Products).WithOptional
                  (x => x.Category).WillCascadeOnDelete();
-            
+            contextBuilder.Entity<Product>().HasMany
+                 (x => x.Carts).WithOptional
+                 (x => x.Product).WillCascadeOnDelete();
+
+
 
         }
 

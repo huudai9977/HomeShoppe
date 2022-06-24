@@ -231,3 +231,9 @@ C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrati
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.ab.resources
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.updateuserInformation.resources
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.check1.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.ModelCart.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.update_ModelCart.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.edit_Cart.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.aaaaaaa.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.Addbill.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.editbillcart.resources

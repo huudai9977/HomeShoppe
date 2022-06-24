@@ -23,7 +23,7 @@ namespace Home_Shoppe.Areas.Admin.Controllers
         public ActionResult Index(int page = 1, int pagesize = 12)
         {
             var p = db.Categories.SqlQuery("Select * from Category ").ToPagedList(page, pagesize);
-            return View(db.Categories.ToList());
+            return View(p);
         }
 
         // GET: Admin/Categories/Details/5
@@ -54,8 +54,9 @@ namespace Home_Shoppe.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdCategory,NameCategory")] Category category)
         {
+            Random r = new Random();
             long count = db.Categories.LongCount();
-            string id = "C" + count.ToString("00000");
+            string id = "C" +r.Next(10,99)+ count.ToString("00000");
             category.IdCategory = id;
             if (ModelState.IsValid)
             {

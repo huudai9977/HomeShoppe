@@ -32,7 +32,7 @@ namespace Home_Shoppe.Models
         [DefaultValue(0)]
         public int Status { get; set; }
 
-        [DefaultValue("N'New'")]
+        [DefaultValue("N'New'")] 
         public String New { get; set; }
 
         [DefaultValue(0)]
@@ -62,6 +62,8 @@ namespace Home_Shoppe.Models
         public virtual ICollection<ProductTag> ProductTags { get; set; }
 
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
+
+        public virtual ICollection<Cart> Carts { get; set; }
 
         public virtual Category Category { get; set; }
 

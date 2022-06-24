@@ -94,9 +94,9 @@ namespace Home_Shoppe.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                Random r = new Random();
                 long count = db.UserInformations.LongCount();
-                string id = "U" + count.ToString("00000");
+                string id = "U" +r.Next(10,99)+ count.ToString("00000");
                 userInformation.IdUser = id;
                 var Email = User.Identity.GetUserName();
                 userInformation.Email = Email;

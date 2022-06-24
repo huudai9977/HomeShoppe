@@ -1,4 +1,5 @@
 ﻿using Home_Shoppe.Models;
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Collections;
@@ -20,6 +21,8 @@ namespace Home_Shoppe.Controllers
             
             return View();
         }
+        
+        
         //GET : data
         public static IEnumerable<Category> ListCategories()
         {
@@ -69,7 +72,43 @@ namespace Home_Shoppe.Controllers
             
             return View(view);
         }
+        
+        [HttpPost]
+       
+        public ActionResult CreateCart(string IdProduct, double Price, string Color, int Quantity)
+        {
+            Cart cart = new Cart();
+            if (ModelState.IsValid)
+            {
+                long count = db.Carts.LongCount();
+                string id = "CART" + count.ToString("00000");
+                cart.IdCart = "test123";
+                cart.UserID = User.Identity.GetUserId();
+                cart.IdProduct = "P00008";
+                cart.Price = Price;
+                cart.Quantity = 1;
+                cart.Color = "blue";
+                cart.Total = 4;
+                db.Carts.Add(cart);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            return View();
+        }
+        //GET: shop/search
+
+        [HttpPost]
+        public ActionResult Search(string Search, int page = 1, int pagesize = 8)
+        {
+            var products = db.Products.SqlQuery("Select * from Product ").ToPagedList(page, pagesize);
+            //var resultList = products;
+            //if (!String.IsNullOrEmpty(Search))
+            // resultList = products.Where(t => t.NameProduct.Contains(Search)).ToPagedList(page, pagesize);
+            ViewBag.keyword = Search;
+            return View(products);
+
+        }
         // GET: Shop/About
         public ActionResult About()
         {

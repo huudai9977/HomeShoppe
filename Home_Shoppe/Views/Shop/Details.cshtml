@@ -1,4 +1,5 @@
 ﻿@model Home_Shoppe.Models.Product
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -12,6 +13,8 @@
             </div>
             <div class="clear"></div>
         </div>
+
+
         <div class="section group">
             <div class="cont-desc span_1_of_2">
                 <div class="product-details">
@@ -39,62 +42,63 @@
                             </div>
                         </div>
                     </div>
-                    <div class="desc span_3_of_2">
-                        <h2>@Model.NameProduct </h2>
-                        <p>@Model.Description</p>
-                        <div class="price">
-                            <p>Price: <span>$@Model.Price</span></p>
-                        </div>
-                        <div class="available">
-                            <p>Available Options :</p>
-                            <ul>
-                                <li>
-                                    Color:
-                                    <select>
-                                        <option>Silver</option>
-                                        <option>Black</option>
-                                        <option>Dark Black</option>
-                                        <option>Red</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    Size:<select>
-                                        <option>Large</option>
-                                        <option>Medium</option>
-                                        <option>small</option>
-                                        <option>Large</option>
-                                        <option>small</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    Quality:<select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="share-desc">
-                            <div class="share">
-                                <p>Share Product :</p>
+                    @using (Html.BeginForm("Create", "Carts", FormMethod.Post))
+                    {
+
+                        <div class="desc span_3_of_2">
+                            <h2>@Model.NameProduct </h2>
+                            <p>@Model.Description</p>
+                            <div class="price">
+                                <p>Price: <span>$@Model.Price</span></p>
+                            </div>
+                            <div class="available">
+                                <p>Available Options :</p>
                                 <ul>
-                                    <li><a href="#"><img src="~/Asset/images/facebook.png" alt="" /></a></li>
-                                    <li><a href="#"><img src="~/Asset/images/twitter.png" alt="" /></a></li>
+                                    <li>
+                                        Color:
+                                        <select name="Color">
+                                            <option value="Silver">Silver</option>
+                                            <option value="Black">Black</option>
+                                            <option value="Dark">Dark</option>
+                                            <option value="Red">Red</option>
+                                        </select>
+                                    </li>
+
+                                    <li>
+                                        Quality:<input class="form-inline quantity" type="number" value="1" min="1" max="1000" name="Quantity" />
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="button"><span><a href="#">Add to Cart</a></span></div>
-                            <div class="clear"></div>
+                            <div class="share-desc">
+                                <div class="share">
+                                    <p>Share Product :</p>
+                                    <ul>
+                                        <li><a href="#"><img src="~/Asset/images/facebook.png" alt="" /></a></li>
+                                        <li><a href="#"><img src="~/Asset/images/twitter.png" alt="" /></a></li>
+                                    </ul>
+                                </div>
+
+                                <input type="hidden" name="IdProduct" value="@Model.IdProduct" />
+                                <input type="hidden" name="Price" value="@Model.Price" />
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <input type="submit" value="Add to Cart" class="button">
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Add to Cart", "Login", "Account", null, htmlAttributes: new { @class = "button" })
+                                }
+                                <div class="clear"></div>
+                            </div>
+                            <div class="wish-list">
+                                <ul>
+                                    <li class="wish"><a href="#">Add to Wishlist</a></li>
+                                    <li class="compare"><a href="#">Add to Compare</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="wish-list">
-                            <ul>
-                                <li class="wish"><a href="#">Add to Wishlist</a></li>
-                                <li class="compare"><a href="#">Add to Compare</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    }
                     <div class="clear"></div>
                 </div>
                 <div class="product_desc">
