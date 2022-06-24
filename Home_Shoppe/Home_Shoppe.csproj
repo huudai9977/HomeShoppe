@@ -177,6 +177,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInformationsController.cs" />
@@ -248,6 +249,10 @@
     <Compile Include="Migrations\202206231125306_edit-bill-cart.cs" />
     <Compile Include="Migrations\202206231125306_edit-bill-cart.designer.cs">
       <DependentUpon>202206231125306_edit-bill-cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206241138052_edit_prodct.cs" />
+    <Compile Include="Migrations\202206241138052_edit_prodct.designer.cs">
+      <DependentUpon>202206241138052_edit_prodct.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1462,6 +1467,7 @@
     <Content Include="Views\Carts\Index.cshtml" />
     <Content Include="Views\Bills\Pay.cshtml" />
     <Content Include="Views\Shop\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1532,6 +1538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206231125306_edit-bill-cart.resx">
       <DependentUpon>202206231125306_edit-bill-cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206241138052_edit_prodct.resx">
+      <DependentUpon>202206241138052_edit_prodct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

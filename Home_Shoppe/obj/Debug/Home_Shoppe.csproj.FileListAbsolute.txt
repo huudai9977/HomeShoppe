@@ -237,3 +237,4 @@ C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrati
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.aaaaaaa.resources
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.Addbill.resources
 C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.editbillcart.resources
+C:\Users\huudai\Desktop\git\HomeShoppe\Home_Shoppe\obj\Debug\Home_Shoppe.Migrations.edit_prodct.resources

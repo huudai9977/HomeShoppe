@@ -30,16 +30,16 @@ namespace Home_Shoppe.Models
         public string Description { get; set; }
 
         [DefaultValue(0)]
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         [DefaultValue("N'New'")] 
         public String New { get; set; }
 
         [DefaultValue(0)]
-        public int Views { get; set; }
+        public int? Views { get; set; }
 
         [DefaultValue(0)]
-        public int Sold { get; set; }
+        public int? Sold { get; set; }
 
         [StringLength(50)]
         public string Image1 { get; set; }
@@ -58,6 +58,8 @@ namespace Home_Shoppe.Models
 
         [StringLength(50)]
         public string Image6 { get; set; }
+
+        public int? QuantityInStock { get; set; }
 
         public virtual ICollection<ProductTag> ProductTags { get; set; }
 

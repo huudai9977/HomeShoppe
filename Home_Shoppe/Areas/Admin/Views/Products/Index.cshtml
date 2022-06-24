@@ -6,7 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
 }
 
-<h2>List Product</h2>
+<h2> Product Management</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -28,7 +28,7 @@
         </th>
 
         <th>
-            Status
+            Quantity
         </th>
         <th>
             Views
@@ -59,7 +59,7 @@
                 @item.Price
             </td>
             <td>
-                @item.Status
+                @item.QuantityInStock
             </td>
             <td>
                 @item.Views

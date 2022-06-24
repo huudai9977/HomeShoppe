@@ -52,15 +52,16 @@ namespace Home_Shoppe.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,IdCategory,NameProduct,Price,ProductDetails,Description,Status,New,Views,Sold,Image1,Image2,Image3,Image4,Image5,Image6")] Product product,HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "IdProduct,IdCategory,NameProduct,Price,ProductDetails,Description,Status,New,Views,Sold,Image1,Image2,Image3,Image4,Image5,Image6,QuantityInStock")] Product product,HttpPostedFileBase img)
         {
             Random r = new Random();
             long count = db.Products.LongCount();
             string id = "P" +r.Next(10,99)+ count.ToString("00000");
             product.IdProduct = id;
             product.Status = 0;
+            product.Views = 0;
             product.Sold = 0;
-            product.New = "N'New'";
+            product.New = ""+DateTime.Now;
             if (ModelState.IsValid)
             {
 
@@ -143,7 +144,7 @@ namespace Home_Shoppe.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,IdCategory,NameProduct,Price,ProductDetails,Description,Status,New,Views,Sold,Image1,Image2,Image3,Image4,Image5,Image6")] Product product)
+        public ActionResult Edit([Bind(Include = "IdProduct,IdCategory,NameProduct,Price,ProductDetails,Description,Status,New,Views,Sold,Image1,Image2,Image3,Image4,Image5,Image6,QuantityInStock")] Product product)
         {
             if (ModelState.IsValid)
             {

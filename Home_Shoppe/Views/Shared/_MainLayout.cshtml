@@ -94,21 +94,21 @@
                         <div class="clear"></div>
                     </ul>
                 </div>
-                @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
-                {
-                    <div class="search_box">
-
+                
+                <div class="search_box">
+                    @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
+                    {
                         <form>
 
                             <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
-
+                            
                         </form>
-                        
+                     }
 
                     </div>
-                }
-                    <div class="clear"></div>
-                </div>
+                
+                <div class="clear"></div>
+            </div>
         </div>
         @RenderBody()
         <div class="footer">

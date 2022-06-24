@@ -33,33 +33,33 @@ namespace Home_Shoppe.Controllers
         public static IEnumerable<Product> NewProduct()
         {
             var dba = new HomeShopDbContext();
-            var c = dba.Products.SqlQuery("Select TOP(4) * from Product ORDER BY IdProduct DESC");
+            var c = dba.Products.SqlQuery("Select TOP(4) * from Product Where QuantityInStock>0 ORDER BY IdProduct DESC");
             return c;
         }
 
         public static IEnumerable<Product> RelatedProduct(string id)
         {
             var dba = new HomeShopDbContext();
-            var c = dba.Products.SqlQuery("Select TOP(4) * from Product where IdCategory='" + id + "'"+" ORDER BY Views DESC");
+            var c = dba.Products.SqlQuery("Select TOP(4) * from Product where QuantityInStock>0 and IdCategory='" + id + "'"+" ORDER BY Views DESC");
             return c;
         }
 
         public static IEnumerable<Product> FeatureProduct()
         {
             var dba = new HomeShopDbContext();
-            var c = dba.Products.SqlQuery("Select TOP(4) * from Product ORDER BY Views DESC");
+            var c = dba.Products.SqlQuery("Select TOP(4) * from Product Where QuantityInStock>0 ORDER BY Views DESC");
             return c;
         }
         // GET:  all Product
         public ActionResult AllProduct(int page=1,int pagesize=12 )
         {
-            var p = db.Products.SqlQuery("Select * from Product ").ToPagedList(page,pagesize);
+            var p = db.Products.SqlQuery("Select * from Product Where QuantityInStock>0 ").ToPagedList(page,pagesize);
             return View(p);
         }
         //GET: Data
         public ActionResult Category(string id,int page = 1, int pagesize = 12)
         {
-            var p = db.Products.SqlQuery("Select * from Product where IdCategory='"+id+"'").ToPagedList(page, pagesize);
+            var p = db.Products.SqlQuery("Select * from Product where QuantityInStock>0 and IdCategory='" + id+"'").ToPagedList(page, pagesize);
             ViewBag.NameCategory = db.Categories.SingleOrDefault(a => a.IdCategory == id).NameCategory;
             return View(p);
         }
@@ -101,7 +101,7 @@ namespace Home_Shoppe.Controllers
         [HttpPost]
         public ActionResult Search(string Search, int page = 1, int pagesize = 8)
         {
-            var products = db.Products.SqlQuery("Select * from Product ").ToPagedList(page, pagesize);
+            var products = db.Products.SqlQuery("Select * from Product Where QuantityInStock>0 ").ToPagedList(page, pagesize);
             //var resultList = products;
             //if (!String.IsNullOrEmpty(Search))
             // resultList = products.Where(t => t.NameProduct.Contains(Search)).ToPagedList(page, pagesize);
