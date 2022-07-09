@@ -17,7 +17,7 @@ namespace Home_Shoppe.Models
 
         public virtual DbSet<UserInformation> UserInformations { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }+*
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Product> Products { get; set; }
